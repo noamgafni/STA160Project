@@ -1,0 +1,26 @@
+{
+  "val": {
+    "split": "val",
+    "roc_auc": 0.5665280013126814,
+    "balanced_acc": 0.543376000164314
+  },
+  "test": {
+    "split": "test",
+    "roc_auc": 0.5414155773275011,
+    "balanced_acc": 0.5218086961406159
+  },
+  "fast_val": {
+    "split": "val (FAST)",
+    "roc_auc": 0.5658255522987544,
+    "balanced_acc": 0.5419282868448156
+  },
+  "params_final": {
+    "n_estimators": 400,
+    "max_depth": 8,
+    "min_samples_leaf": 100,
+    "max_features": "sqrt",
+    "class_weight": "balanced_subsample",
+    "max_samples": 0.7,
+    "random_state": 42
+  }
+}
