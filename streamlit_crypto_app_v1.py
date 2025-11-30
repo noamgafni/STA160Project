@@ -1,6 +1,5 @@
 """
 Cryptocurrency Tail-Risk Prediction Dashboard
-Streamlit App - Introduction Section
 
 To run: streamlit run app.py
 """
@@ -86,7 +85,7 @@ page = st.sidebar.radio(
 st.sidebar.markdown("---")
 st.sidebar.info(
     "**STA 160 Final Project**\n\n"
-    "Predicting Cryptocurrency Tail-Risk Events Using Machine Learning\n\n"
+    "Predicting Cryptocurrency Tail-Risk Events\n\n"
     "UC Davis | Fall 2025"
 )
 
@@ -144,9 +143,9 @@ if page == "📖 Introduction":
         ### 📈 Key Statistics
         
         **Dataset Coverage:**
-        - 211 cryptocurrencies
-        - 310K+ daily observations
-        - 2020-2025 time period
+        - 250 cryptocurrencies
+        - 343K+ daily observations
+        - 2014-2025 time period
         
         **Tail Events Defined:**
         - Returns exceeding 95th percentile
@@ -200,26 +199,27 @@ if page == "📖 Introduction":
         st.markdown("""
         ### Data Collection & Cleaning
         
-        **Primary Source:** Kaggle - "Cryptocurrency Historical Prices (Top 100)"
+        **Primary Source:** Kaggle - "Cryptocurrency Prices (Top 250)"
         
         **Raw Data Characteristics:**
-        - **OHLCV data**: Open, High, Low, Close, Volume for each day
-        - **342K raw observations** across 211 cryptocurrencies
+        - **OHLCV data**: Open, High, Low, Close, Volume 
+        - **343K raw observations** across 250 cryptocurrencies
         - Daily frequency (7 days/week)
-        - Multiple exchanges aggregated
         
         **Data Cleaning Pipeline:**
-        1. **Standardization**: Unified column names across all coins
-        2. **Validation**: Removed impossible values (High < Low, negative prices)
-        3. **Time alignment**: Ensured consistent daily frequency
-        4. **Missing data**: Dropped coins with >10% zero-volume days (illiquid markets)
-        5. **Outlier handling**: Applied robust scaling to handle extreme values
+        1. **Standardization**: Rename irregular column names and make lowercase 
+        2. **Validation checks**: Checked for impossible values (high < low, null/negative prices)
+        3. **Daily time alignment**: Each symbol group resampled to daily frequency
+        3. **Missing data**: Identified 87 symbols with at least one zero-volume days (illiquid markets), dropped rows with misisng OHLC
+        3. **Outlier characterization**: Used a rolling 95th percentile absolute return threshold to identify outliers 
+        
         
         **Quality Checks:**
-        - ✓ No lookahead bias in feature engineering
+        - ✓ No lookahead bias 
         - ✓ Temporal ordering preserved
-        - ✓ No data leakage between train/val/test splits
-        - ✓ Removed 87 illiquid coins (41% of dataset)
+        - ✓ Train/val/test splits isolated 
+        - ✓ Removed invalid rows (97 rows dropped)
+        - ✓ Removed missing OHLC rows 
         """)
         
         # Sample data preview
@@ -479,7 +479,7 @@ st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: #666; padding: 1rem;'>
     <p><strong>STA 160 Final Project</strong> | UC Davis | Fall 2025</p>
-    <p>Cryptocurrency Tail-Risk Prediction Using Machine Learning</p>
+    <p>Cryptocurrency Tail-Risk Prediction</p>
     <p style='font-size: 0.9rem;'>Built with Streamlit 🎈 | Data from Kaggle</p>
 </div>
 """, unsafe_allow_html=True)
